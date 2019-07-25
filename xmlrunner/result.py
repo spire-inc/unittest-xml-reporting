@@ -280,6 +280,14 @@ class _XMLTestResult(_TextTestResult):
             self.stream.write(" ... ")
             self.stream.flush()
 
+    def getDescription(self, test):
+        """ Return the test description if not have test name. """
+        doc_first_line = test.shortDescription()
+        if self.descriptions and doc_first_line:
+            return doc_first_line
+        else:
+            return str(test)
+
     def _setupStdout(self):
         """
         Capture stdout / stderr by replacing sys.stdout / sys.stderr
